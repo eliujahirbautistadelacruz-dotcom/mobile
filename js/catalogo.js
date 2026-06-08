@@ -20,8 +20,8 @@ const PRODUCTOS = [
             { icon: "fas fa-lightbulb", text: "Iluminación en todo el interior." }
         ],
         badges: [
-            { val: "4M", sub: "4m × 2.5m", label: "DIMENSIÓN" },
-            { val: "4", sub: "Personas", label: "CAPACIDAD" }
+            {  val: "4M", sub: "4m × 2.5m", label: "DIMENSIÓN" },
+            { label: "CAPACIDAD",  val: "4", sub: "Personas" }
         ]
     },
     {
@@ -51,7 +51,7 @@ const PRODUCTOS = [
         sub: "Tipo Oficina · 6 metros",
         desc: "Buen tamaño y precio para empesar!",
         imagenCard: "images/case6.2.png",
-        imagenes: ["images/6modi.png","images/case6.1.jpeg","images/case6.2.jpeg","images/6m1.jpg","images/6m2.jpg","images/6m3.jpg","images/6m4.jpg",],
+        imagenes: ["images/6modi.png","images/case6.1.jpeg","images/case6.2.jpeg","images/casetaa.jpeg","images/6m2.jpg","images/6m3.jpg","images/6m4.jpg",],
         badge: "featured",
         specs: [
             { icon: "fas fa-layer-group", text: "Material MULTYPANEL con aislante térmico." },
@@ -93,7 +93,7 @@ const PRODUCTOS = [
         sub: "Tipo Oficina · 13 metros",
         desc: "Lista para tus grandes proyectos. ¡Como una casa!",
         imagenCard: "images/case13.png",
-        imagenes: ["images/case13.png","images/inte13.1.jpg","images/inte13.2.jpg"],
+        imagenes: ["images/case13.png","images/casetaaa.jpeg"],
         badge: null,
         specs: [
             { icon: "fas fa-layer-group", text: "Material MULTYPANEL con aislante térmico." },
@@ -114,7 +114,7 @@ const PRODUCTOS = [
         sub: "Tipo Sanitario · 6 metros",
         desc: " ¡Baños como en casa!",
         imagenCard: "images/sani1.png",
-        imagenes: ["images/sani1.jpeg","images/sanii1.jpeg","images/sanii2.jpeg","images/sanii3.jpeg","images/sanii4.jpeg"],
+        imagenes: ["images/sani1.png","images/sanii2.jpeg","images/sanii3.jpeg","images/sanii4.jpeg"],
         badge: null,
         specs: [
             { icon: "fas fa-restroom", text: "4 Mingitorios integrados." },
@@ -258,50 +258,99 @@ function renderCatalog(filtro = 'all') {
             </div>
         </div>`;
     }).join('');
-    document.getElementById('productCount').textContent = visible.length;
+const countEl = document.getElementById('productCount');
+if (countEl) {
+    countEl.textContent = visible.length;
+}
+    }            
+// ============================================
+//  RENDER BADGE (Dimensiones y Capacidad)
+// ============================================
+
+function renderBadge(p, b) {
+    if ((p.tipo === 'oficina' || p.tipo === 'sanitario') && b.label === 'CAPACIDAD') {
+        const iconClass = p.tipo === 'sanitario' ? 'fas fa-restroom' : 'fas fa-user';
+        const n = parseInt(b.val) || 0;
+        let gruposHTML = '';
+
+        if (n === 4) {
+            let icons = '';
+            for (let j = 0; j < n; j++) icons += `<i class="${iconClass} cap-person"></i>`;
+            gruposHTML = `<div class="cap-group">${icons}</div>`;
+        } else {
+            for (let i = 0; i < n; i += 3) {
+                const count = Math.min(3, n - i);
+                let icons = '';
+                for (let j = 0; j < count; j++) icons += `<i class="${iconClass} cap-person"></i>`;
+                gruposHTML += `<div class="cap-group">${icons}</div>`;
+            }
+        }
+        return `<div class="dim-badge cap-badge">
+                    <div class="dlabel">${b.label}</div>
+                    <div class="cap-num">${n}</div>
+                    <div class="cap-groups-row">${gruposHTML}</div>
+                    <div class="dsub">${b.sub}</div>
+                </div>`;
+    }
+    
+    return `<div class="dim-badge">
+                <div class="dlabel">${b.label}</div>
+                <div class="dval">${b.val}</div>
+                <div class="dsub">${b.sub}</div>
+            </div>`;
 }
 
 // ============================================
-//  CONSTRUCCIÓN DE ESPECIFICACIONES
+//  BUILD SPECS (para el modal) - Versión como en la imagen
 // ============================================
 
 function buildSpecs(p) {
-    const c = document.getElementById('specsContainer');
-    if (!c) return;
-    c.innerHTML = '';
-    const makeTable = (specs) => `<table class="specs-table"><tbody>${specs.map(s => `<tr><td class="spec-ico"><i class="${s.icon}"></i></td><td class="spec-txt">${s.text}</td></td>`).join('')}</tbody></table>`;
-    if (p.specsCaracteristicas) {
-        c.innerHTML = `<div class="specs-block"><div class="specs-head"><div class="specs-head-icon"><i class="fas fa-cogs"></i></div><span class="specs-head-label">CARACTERÍSTICAS TÉCNICAS</span></div>${makeTable(p.specsCaracteristicas)}</div><div class="specs-sep"></div><div class="specs-block"><div class="specs-head"><div class="specs-head-icon"><i class="fas fa-star"></i></div><span class="specs-head-label">BENEFICIOS</span></div>${makeTable(p.specsBeneficios)}</div>`;
-    } else {
-        c.innerHTML = `<div class="specs-block"><div class="specs-head"><div class="specs-head-icon"><i class="fas fa-cogs"></i></div><span class="specs-head-label">CARACTERÍSTICAS TÉCNICAS</span></div>${makeTable(p.specs)}</div>`;
+    const container = document.getElementById('specsContainer');
+    if (!container) return;
+    
+    let html = '';
+    
+    // 1. Especificaciones (lista normal) primero
+    if (p.specs && p.specs.length > 0) {
+        html += `<div class="specs-list">`;
+        p.specs.forEach(spec => {
+            html += `
+                <div class="spec-item">
+                    <i class="${spec.icon}"></i>
+                    <span>${spec.text}</span>
+                </div>`;
+        });
+        html += `</div>`;
     }
-    if (p.badges) {
-        const renderBadge = (b) => {
-            if ((p.tipo === 'oficina' || p.tipo === 'sanitario') && b.label === 'CAPACIDAD') {
-                const iconClass = p.tipo === 'sanitario' ? 'fas fa-restroom' : 'fas fa-user';
-                const n = parseInt(b.val) || 0;
-                let gruposHTML = '';
-                if (n === 4) {
-                    let icons = '';
-                    for (let j = 0; j < n; j++) icons += `<i class="${iconClass} cap-person"></i>`;
-                    gruposHTML = `<div class="cap-group">${icons}</div>`;
-                } else {
-                    for (let i = 0; i < n; i += 3) {
-                        const count = Math.min(3, n - i);
-                        let icons = '';
-                        for (let j = 0; j < count; j++) icons += `<i class="${iconClass} cap-person"></i>`;
-                        gruposHTML += `<div class="cap-group">${icons}</div>`;
-                    }
-                }
-                return `<div class="dim-badge cap-badge"><div class="cap-num">${n}</div><div class="cap-groups-row">${gruposHTML}</div><div class="dsub">${b.sub}</div><div class="dlabel">${b.label}</div></div>`;
-            }
-            return `<div class="dim-badge"><div class="dval">${b.val}</div><div class="dsub">${b.sub}</div><div class="dlabel">${b.label}</div></div>`;
-        };
-        c.innerHTML += `<div class="badges-row">${p.badges.map(renderBadge).join('')}</div>`;
+    
+    // 2. Remolque (si aplica)
+    if (p.tipo === 'remolque') {
+        if (p.specsCaracteristicas) {
+            html += `<h4 class="specs-subtitle">Características</h4><div class="specs-list">`;
+            p.specsCaracteristicas.forEach(spec => {
+                html += `<div class="spec-item"><i class="${spec.icon}"></i><span>${spec.text}</span></div>`;
+            });
+            html += `</div>`;
+        }
+        if (p.specsBeneficios) {
+            html += `<h4 class="specs-subtitle">Beneficios</h4><div class="specs-list">`;
+            p.specsBeneficios.forEach(spec => {
+                html += `<div class="spec-item"><i class="${spec.icon}"></i><span>${spec.text}</span></div>`;
+            });
+            html += `</div>`;
+        }
     }
-    if (p.tipo === 'oficina') {
-        c.innerHTML += `<div class="info-strip"><div class="strip-item"><i class="fas fa-hand-holding-usd"></i><div><div class="strip-title">RENTA Y VENTA</div></div></div><div class="strip-item"><i class="fas fa-wrench"></i><div><div class="strip-title">MANTENIMIENTO GRATUITO</div></div></div></div>`;
+    
+    // 3. Cuadros azules al FINAL (como en tu imagen)
+    if (p.badges && p.badges.length > 0) {
+        html += `<div class="modal-badges bottom-badges">`;
+        p.badges.forEach(b => {
+            html += renderBadge(p, b);
+        });
+        html += `</div>`;
     }
+    
+    container.innerHTML = html;
 }
 
 // ============================================
@@ -345,6 +394,8 @@ function changeSlide(dir) {
     sliderIdx = (sliderIdx + dir + sliderImages.length) % sliderImages.length;
     updateSlider();
 }
+
+
 
 function goToSlide(i) {
     sliderIdx = i;

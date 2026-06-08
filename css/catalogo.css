@@ -1,4 +1,88 @@
-/* ============================================================ */
+/* ESTILOS PARA LOS CUADROS AZULES EN EL MODAL */
+.modal-badges {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+    justify-content: center;
+}
+
+.bottom-badges {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.dim-badge {
+    background: linear-gradient(135deg, #1e3a8a, #2563eb);
+    color: white;
+    border-radius: 12px;
+    padding: 18px 20px;
+    min-width: 160px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+    flex: 1;
+}
+
+.dlabel {
+    font-size: 13px;
+    font-weight: 600;
+    opacity: 0.9;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.dval {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 6px 0;
+}
+
+.dsub {
+    font-size: 13px;
+    opacity: 0.85;
+}
+
+.cap-badge .cap-num {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.cap-groups-row {
+    margin: 8px 0;
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+}
+
+.cap-person {
+    font-size: 18px;
+    margin: 0 2px;
+}
+
+/* Ajustes para el contenedor de specs */
+.specs-list {
+    margin-bottom: 20px;
+}
+
+.spec-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.spec-item:last-child {
+    border-bottom: none;
+}
+
+.spec-item i {
+    color: #2563eb;
+    font-size: 20px;
+    width: 24px;
+}/* ============================================================ */
 /* CATÁLOGO CSS — Mobile Booths                                 */
 /* ============================================================ */
 /* NOTA: Este archivo depende de styles.css que debe contener:
