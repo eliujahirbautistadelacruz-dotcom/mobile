@@ -34,7 +34,7 @@ const PRODUCTOS = [
         badge: "best",
         specs: [
             { icon: "fas fa-layer-group", text: "Material MULTYPANEL con aislante térmico." },
-            { icon: "fas fa-wind", text: "Aire acondicionado de alta eficiencia." },
+            { icon: "fas fa-snowflake", text: "Aire acondicionado de alta eficiencia." },
             { icon: "fas fa-bolt", text: "Instalación eléctrica completa 110V." },
             { icon: "fas fa-chair", text: "Escritorios y repisas amplias." },
             { icon: "fas fa-border-all", text: "Ventanas de alta resistencia." },
@@ -51,11 +51,11 @@ const PRODUCTOS = [
         sub: "Tipo Oficina · 6 metros",
         desc: "Buen tamaño y precio para empesar!",
         imagenCard: "images/case6.2.png",
-        imagenes: ["images/6modi.png","images/case6.1.jpeg","images/case6.2.jpeg","images/casetaa.jpeg","images/6m2.jpg","images/6m3.jpg","images/6m4.jpg",],
+        imagenes: ["images/6modi.png","images/case6.1.jpeg","images/case6.2.jpeg","images/6m2.jpg","images/6m3.jpg","images/6m4.jpg",],
         badge: "featured",
         specs: [
             { icon: "fas fa-layer-group", text: "Material MULTYPANEL con aislante térmico." },
-            { icon: "fas fa-wind", text: "Aire acondicionado de alta eficiencia." },
+            { icon: "fas fa-snowflake", text: "Aire acondicionado de alta eficiencia." },
             { icon: "fas fa-bolt", text: "Instalación eléctrica completa 110V." },
             { icon: "fas fa-chair", text: "Escritorios y repisas amplias." },
             { icon: "fas fa-border-all", text: "Ventanas de alta resistencia." },
@@ -76,7 +76,7 @@ const PRODUCTOS = [
         badge: null,
         specs: [
             { icon: "fas fa-layer-group", text: "Material MULTYPANEL con aislante térmico." },
-            { icon: "fas fa-wind", text: "Aire acondicionado de alta eficiencia." },
+            { icon: "fas fa-snowflake", text: "Aire acondicionado de alta eficiencia." },
             { icon: "fas fa-bolt", text: "Instalación eléctrica completa 110V." },
             { icon: "fas fa-chair", text: "Escritorios y repisas amplias." },
             { icon: "fas fa-border-all", text: "Ventanas de alta resistencia." },
@@ -266,6 +266,9 @@ if (countEl) {
 // ============================================
 //  RENDER BADGE (Dimensiones y Capacidad)
 // ============================================
+// ============================================
+//  RENDER BADGE - Label arriba + Línea + Número grande
+// ============================================
 
 function renderBadge(p, b) {
     if ((p.tipo === 'oficina' || p.tipo === 'sanitario') && b.label === 'CAPACIDAD') {
@@ -285,16 +288,20 @@ function renderBadge(p, b) {
                 gruposHTML += `<div class="cap-group">${icons}</div>`;
             }
         }
+        
         return `<div class="dim-badge cap-badge">
                     <div class="dlabel">${b.label}</div>
-                    <div class="cap-num">${n}</div>
+                    <div class="divider"></div>
+                    <div class="dval">${b.val}</div>
                     <div class="cap-groups-row">${gruposHTML}</div>
                     <div class="dsub">${b.sub}</div>
                 </div>`;
     }
     
+    // Para Dimensiones
     return `<div class="dim-badge">
                 <div class="dlabel">${b.label}</div>
+                <div class="divider"></div>
                 <div class="dval">${b.val}</div>
                 <div class="dsub">${b.sub}</div>
             </div>`;

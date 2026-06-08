@@ -82,7 +82,48 @@
     color: #2563eb;
     font-size: 20px;
     width: 24px;
-}/* ============================================================ */
+}
+.dim-badge {
+    background: linear-gradient(135deg, #1e3a8a, #2563eb);
+    color: white;
+    border-radius: 12px;
+    padding: 18px 16px;
+    min-width: 160px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+    flex: 1;
+}
+
+.dlabel {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+}
+
+.divider {
+    width: 70%;
+    height: 2px;
+    background: rgba(255,255,255,0.65);
+    margin: 8px auto;
+}
+
+.dval {
+    font-size: 34px;
+    font-weight: 700;
+    margin: 6px 0;
+}
+
+.dsub {
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+.cap-groups-row {
+    margin-top: 8px;
+}
+/* ============================================================ */
 /* CATÁLOGO CSS — Mobile Booths                                 */
 /* ============================================================ */
 /* NOTA: Este archivo depende de styles.css que debe contener:
