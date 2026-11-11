@@ -3,30 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="theme-color" content="#d9473a">
+<meta name="theme-color" content="#ffd9e6">
 <title>Burritos Caseras - Control</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Pacifico&display=swap" rel="stylesheet">
 <style>
   :root{
     --cafe:#4a1712; --rojo:#c0392b; --rojo-osc:#8b1d14; --rosa:#f7a8c4; --rosa-cl:#ffe1ec; --rosa-fu:#e8689a;
-    --crema:#fff3dc; --madera:#e9a866; --madera-osc:#b5651d; --madera-cl:#f6c68f; --verde:#2e9e4f; --oro:#f2b632;
+    --crema:#fff3dc; --madera:#e9a866; --madera-osc:#b5651d; --verde:#2e9e4f; --oro:#f2b632; --ambar:#f0a020;
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   html,body{margin:0}
   body{
     font-family:'Baloo 2',system-ui,sans-serif; color:var(--cafe);
-    background:repeating-conic-gradient(#d9473a 0 25%, #fff 0 50%) 0 0/34px 34px;
-    min-height:100vh; padding:14px 0 0;
+    background:linear-gradient(180deg,#ffe9d2 0%,#ffdce8 100%) fixed;
+    min-height:100vh; padding:0;
   }
 
-  /* ===== HOJA (como el cartel) ===== */
   .hoja{
-    position:relative; max-width:520px; margin:0 auto 0; padding:14px 12px 130px;
-    background:
-      radial-gradient(circle at 20% 10%, rgba(255,255,255,.7), transparent 40%),
-      var(--crema);
-    border-radius:22px; border:3px solid #fff; box-shadow:0 0 0 3px rgba(139,29,20,.25), 0 6px 18px rgba(0,0,0,.25);
-    overflow:hidden; min-height:100vh;
+    position:relative; max-width:520px; margin:0 auto; padding:14px 12px 140px;
+    background:var(--crema); min-height:100vh; overflow:hidden;
+    box-shadow:0 0 24px rgba(139,29,20,.15);
   }
   .deco{position:absolute;pointer-events:none;font-weight:800;z-index:0;user-select:none}
   .deco.h{color:var(--cafe);font-size:26px}
@@ -36,172 +32,136 @@
   /* ===== ENCABEZADO ===== */
   .encab{text-align:center;padding-top:6px}
   .encab .mascota{position:absolute;top:0;font-size:42px;line-height:1}
-  .encab .mascota.izq{left:0}
-  .encab .mascota.der{right:0}
-  .t1{
-    font-weight:800;font-size:50px;line-height:.95;margin:0;color:var(--cafe);
-    -webkit-text-stroke:2px #f0a23b; paint-order:stroke fill;
-    text-shadow:0 3px 0 rgba(240,162,59,.5);
-  }
-  .t2{
-    font-family:'Pacifico',cursive;font-size:38px;line-height:1.05;margin:2px 0 0;color:#f58bb2;
-    -webkit-text-stroke:2px var(--cafe); paint-order:stroke fill; text-shadow:0 3px 0 rgba(74,23,18,.35);
-  }
-  .cinta{
-    display:inline-block;margin:6px 0 0;padding:2px 26px;font-weight:800;font-size:22px;
+  .encab .mascota.izq{left:0}.encab .mascota.der{right:0}
+  .t1{font-weight:800;font-size:50px;line-height:.95;margin:0;color:var(--cafe);
+    -webkit-text-stroke:2px #f0a23b;paint-order:stroke fill;text-shadow:0 3px 0 rgba(240,162,59,.5)}
+  .t2{font-family:'Pacifico',cursive;font-size:38px;line-height:1.05;margin:2px 0 0;color:#f58bb2;
+    -webkit-text-stroke:2px var(--cafe);paint-order:stroke fill;text-shadow:0 3px 0 rgba(74,23,18,.35)}
+  .cinta{display:inline-block;margin:6px 0 0;padding:2px 26px;font-weight:800;font-size:22px;
     background:linear-gradient(#f9d9a6,#f2bb77);border:2px solid var(--madera-osc);border-radius:12px;
-    box-shadow:0 3px 0 rgba(181,101,29,.5); position:relative;
-  }
+    box-shadow:0 3px 0 rgba(181,101,29,.5)}
   .precios{display:flex;justify-content:space-between;align-items:center;margin:8px 4px 0}
-  .nubeprecio{
-    background:var(--rosa-cl);border:4px solid var(--rosa-fu);border-radius:46% 54% 50% 50% / 55% 50% 50% 45%;
-    box-shadow:0 0 0 3px #fff, 0 0 0 5px var(--rosa); padding:4px 20px;line-height:.95;text-align:center;
-  }
+  .nubeprecio{background:var(--rosa-cl);border:4px solid var(--rosa-fu);border-radius:46% 54% 50% 50% / 55% 50% 50% 45%;
+    box-shadow:0 0 0 3px #fff,0 0 0 5px var(--rosa);padding:4px 20px;line-height:.95;text-align:center}
   .nubeprecio b{font-size:40px;font-weight:800;display:block}
   .nubeprecio small{font-size:20px;font-weight:800;display:block;margin-top:-4px}
   .nubeprecio.sinc{padding:10px 20px}
-  .nubeprecio.sinc small{font-size:13px;margin:0}
 
-  /* ===== PERIODOS ===== */
   .periodos{display:flex;gap:6px;margin:14px 0}
-  .periodos button{
-    flex:1;border:3px solid var(--cafe);background:#fff;border-radius:50px;padding:3px 0;
-    font:800 16px 'Baloo 2';color:var(--cafe);
-  }
+  .periodos button{flex:1;border:3px solid var(--cafe);background:#fff;border-radius:50px;padding:3px 0;
+    font:800 16px 'Baloo 2';color:var(--cafe)}
   .periodos button.on{background:var(--rosa);box-shadow:0 3px 0 var(--cafe)}
 
-  /* ===== CAJAS TIPO NUBE ===== */
-  .caja{
-    background:#fffaf0;border:3px solid var(--rojo-osc);border-radius:34px 28px 36px 30px;
-    padding:12px 14px 14px;margin-bottom:16px;
-    box-shadow:0 0 0 4px #fff, 0 0 0 6px rgba(192,57,43,.35);
-  }
+  .caja{background:#fffaf0;border:3px solid var(--rojo-osc);border-radius:34px 28px 36px 30px;
+    padding:12px 14px 14px;margin-bottom:16px;box-shadow:0 0 0 4px #fff,0 0 0 6px rgba(192,57,43,.35)}
   .rotulo{display:flex;flex-direction:column;align-items:center;margin:-26px 0 8px}
-  .rotulo .rosa{
-    background:var(--rosa-cl);border:3px solid var(--rojo-osc);border-radius:50px;padding:0 20px;
-    font-family:'Baloo 2';font-weight:800;font-size:26px;line-height:1.2;white-space:nowrap
-  }
-  .rotulo .llevan{
-    margin-top:2px;background:var(--cafe);color:#fff;border-radius:50px;padding:0 22px;font-weight:700;font-size:18px;line-height:1.3
-  }
-  .caja.sinrot{padding-top:12px}
+  .rotulo .rosa{background:var(--rosa-cl);border:3px solid var(--rojo-osc);border-radius:50px;padding:0 20px;
+    font-weight:800;font-size:26px;line-height:1.2;white-space:nowrap}
+  .rotulo .llevan{margin-top:2px;background:var(--cafe);color:#fff;border-radius:50px;padding:0 22px;font-weight:700;font-size:18px;line-height:1.3}
   h2{margin:0 0 8px;font-size:22px;font-weight:800;text-align:center}
+  .sub{font-size:14px;text-align:center;opacity:.8;margin:-4px 0 8px;line-height:1.2}
 
-  /* resumen */
   .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   .stat{border:3px solid var(--cafe);border-radius:20px;padding:6px 10px;text-align:center;background:#fff}
   .stat small{display:block;font-weight:700;opacity:.8;line-height:1.1}
   .stat b{font-size:28px;font-weight:800;line-height:1.1}
   .stat.gasto{background:#ffe3df}.stat.ing{background:#e3f6e8}.stat.vend{background:var(--rosa-cl)}.stat.gan{background:#fff0c9}
   .stat.gan b.pos{color:var(--verde)}.stat.gan b.neg{color:var(--rojo)}
-  .nota{font-size:14px;margin-top:8px;text-align:center;opacity:.85;line-height:1.2}
+  .nota{font-size:14px;margin-top:8px;text-align:center;opacity:.9;line-height:1.2;font-weight:600}
 
-  /* lista ingredientes con corazones */
-  .ing-row{
-    display:flex;align-items:flex-start;gap:8px;padding:6px 2px;border-bottom:2px dotted rgba(139,29,20,.3)
-  }
+  .ing-row{display:flex;align-items:flex-start;gap:8px;padding:6px 2px;border-bottom:2px dotted rgba(139,29,20,.3)}
   .ing-row:last-child{border-bottom:none}
   .ing-row .corazon{font-size:20px;color:var(--cafe);line-height:1.2}
   .ing-row .nombre{flex:1;min-width:0;font-weight:700;font-size:19px;line-height:1.15}
-  .ing-row .nombre small{display:block;font-size:13px;font-weight:600;opacity:.8}
-  .ing-row .nombre .mejor{color:var(--verde);font-weight:800;opacity:1}
+  .ing-row .nombre small{display:block;font-size:13px;font-weight:600;opacity:.85}
+  .ing-row .nombre .mejor{color:var(--verde);font-weight:800}
   .ing-row .monto{font-weight:800;font-size:19px;color:var(--rojo)}
-  .aderezo{
-    margin:8px auto 0;text-align:center;color:#e0201b;font-weight:800;font-size:17px;line-height:1.05
-  }
+  .aderezo{margin:8px auto 0;text-align:center;color:#e0201b;font-weight:800;font-size:17px;line-height:1.05}
 
-  /* formularios */
   label{display:block;font-weight:800;font-size:15px;margin:10px 0 3px}
-  input,select{
-    width:100%;border:3px solid var(--cafe);border-radius:16px;padding:9px 12px;
-    font:700 18px 'Baloo 2';background:#fff;color:var(--cafe);
-  }
+  input,select{width:100%;border:3px solid var(--cafe);border-radius:16px;padding:9px 12px;
+    font:700 18px 'Baloo 2';background:#fff;color:var(--cafe)}
   .fila{display:flex;gap:8px}.fila>div{flex:1}
   .precio-box{position:relative}
   .precio-box span{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-weight:800;font-size:26px;color:var(--rojo)}
   .precio-box input{font-size:30px;padding-left:36px;font-weight:800}
-  .total-prev{
-    margin:12px 0 4px;text-align:center;font-weight:800;font-size:22px;
-    background:var(--rosa-cl);border:3px dashed var(--rosa-fu);border-radius:18px;padding:3px
-  }
-  .btn{
-    width:100%;margin-top:10px;border:3px solid var(--cafe);border-radius:18px;padding:8px;
-    font:800 21px 'Baloo 2';color:#fff;background:var(--rojo);box-shadow:0 5px 0 var(--cafe)
-  }
+  .total-prev{margin:12px 0 4px;text-align:center;font-weight:800;font-size:20px;line-height:1.15;
+    background:var(--rosa-cl);border:3px dashed var(--rosa-fu);border-radius:18px;padding:4px 6px}
+  .btn{width:100%;margin-top:10px;border:3px solid var(--cafe);border-radius:18px;padding:8px;
+    font:800 21px 'Baloo 2';color:#fff;background:var(--rojo);box-shadow:0 5px 0 var(--cafe)}
   .btn:active{transform:translateY(4px);box-shadow:0 1px 0 var(--cafe)}
   .btn.verde{background:var(--verde)}
   .rapidos{display:flex;gap:6px;margin-top:8px}
   .rapidos button{flex:1;border:3px solid var(--cafe);background:var(--rosa-cl);border-radius:14px;
     padding:2px 0;font:800 18px 'Baloo 2';color:var(--cafe)}
 
-  /* listas de movimientos */
-  .item{
-    display:flex;align-items:center;gap:10px;background:#fff;border:2px solid var(--cafe);
-    border-radius:16px;padding:7px 10px;margin-bottom:8px
-  }
+  .item{display:flex;align-items:center;gap:10px;background:#fff;border:2px solid var(--cafe);
+    border-radius:16px;padding:7px 10px;margin-bottom:8px}
   .item .ico{font-size:26px}
   .item .info{flex:1;min-width:0;line-height:1.1}
   .item .info b{display:block;font-size:18px}
-  .item .info small{opacity:.75;font-weight:600}
+  .item .info small{opacity:.8;font-weight:600}
   .item .monto{font-weight:800;font-size:19px;white-space:nowrap}
   .item .monto.mas{color:var(--verde)}.item .monto.menos{color:var(--rojo)}
   .del{border:none;background:none;font-size:20px;padding:4px}
-  .vacio{text-align:center;opacity:.7;padding:8px;font-weight:600}
+  .vacio{text-align:center;opacity:.75;padding:8px;font-weight:600}
   .pie{display:flex;gap:8px;margin-top:8px}
   .pie button{flex:1;border:2px solid var(--cafe);background:#fff;border-radius:14px;padding:6px;font:700 15px 'Baloo 2';color:var(--cafe)}
 
-  /* ===== LETRERO ¡ORDENA YA! ===== */
+  /* ===== INVENTARIO ===== */
+  .gran{text-align:center;background:var(--rosa-cl);border:3px solid var(--rosa-fu);border-radius:22px;padding:8px}
+  .gran .num{font-size:52px;font-weight:800;line-height:1}
+  .gran .txt{font-weight:700;font-size:17px;line-height:1.15}
+  .gran .limita{margin-top:4px;font-weight:800;color:var(--rojo);font-size:16px;line-height:1.1}
+  .inv{background:#fff;border:2px solid var(--cafe);border-radius:18px;padding:8px 10px;margin-bottom:10px}
+  .inv .top{display:flex;align-items:center;gap:8px}
+  .inv .top .ico{font-size:28px}
+  .inv .top .nm{flex:1;font-weight:800;font-size:19px;line-height:1.05}
+  .inv .top .nm small{display:block;font-size:13px;font-weight:600;opacity:.8}
+  .inv .cuantos{font-weight:800;font-size:24px;text-align:right;line-height:1}
+  .inv .cuantos small{display:block;font-size:12px;font-weight:700;opacity:.8}
+  .barra{height:14px;border-radius:20px;background:#f1e3d0;border:2px solid var(--cafe);margin:6px 0;overflow:hidden}
+  .barra i{display:block;height:100%;border-radius:20px}
+  .inv .aj{border:2px solid var(--cafe);background:var(--rosa-cl);border-radius:12px;padding:2px 12px;font:800 14px 'Baloo 2';color:var(--cafe)}
+  .inv .estado{font-size:13px;font-weight:800}
+  .st-bien{color:var(--verde)}.st-medio{color:#c47a00}.st-mal{color:var(--rojo)}.st-na{opacity:.7}
+  .porcomprar .item{background:#fff0ee}
+  .costo-total{display:flex;gap:8px}
+  .costo-total .stat{flex:1}
+
   .vista{display:none}.vista.on{display:block}
-  .madera{
-    background:
-      repeating-linear-gradient(8deg, rgba(139,76,20,.18) 0 2px, transparent 2px 9px),
-      linear-gradient(#f7cb92,#e9a866);
-    border:3px solid var(--madera-osc);border-radius:22px;
-    box-shadow:inset 0 3px 0 rgba(255,255,255,.4), 0 4px 0 rgba(139,76,20,.5);
-  }
+  .madera{background:repeating-linear-gradient(8deg,rgba(139,76,20,.18) 0 2px,transparent 2px 9px),linear-gradient(#f7cb92,#e9a866);
+    border:3px solid var(--madera-osc);border-radius:22px;box-shadow:inset 0 3px 0 rgba(255,255,255,.4),0 4px 0 rgba(139,76,20,.5)}
   .ordena{margin-top:6px;padding:8px 10px 10px;text-align:center}
-  .ordena .tit{
-    display:inline-block;font-weight:800;font-size:34px;line-height:1;color:#fff;
+  .ordena .tit{display:inline-block;font-weight:800;font-size:34px;line-height:1;color:#fff;
     -webkit-text-stroke:1.5px var(--cafe);paint-order:stroke fill;text-shadow:0 3px 0 rgba(74,23,18,.5);
     background:repeating-linear-gradient(8deg,rgba(139,76,20,.35) 0 2px,transparent 2px 9px),#c97a2a;
-    border-radius:16px;padding:4px 26px;border:3px solid var(--madera-osc);margin-bottom:6px
-  }
+    border-radius:16px;padding:4px 26px;border:3px solid var(--madera-osc);margin-bottom:6px}
   .ordena .tel{display:flex;align-items:center;justify-content:center;gap:8px;font-weight:800;font-size:32px;line-height:1}
   .wa{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;
     background:#25d366;border:3px solid #fff;font-size:22px;box-shadow:0 0 0 2px #1a9a4b}
   .ordena .ubi{font-weight:700;font-size:20px;line-height:1.2}
-  .ordena .msg{
-    margin-top:6px;background:var(--rosa-cl);border:3px solid var(--rosa-fu);border-radius:50px;
-    font-weight:700;font-size:16px;padding:2px 10px;line-height:1.25
-  }
+  .ordena .msg{margin-top:6px;background:var(--rosa-cl);border:3px solid var(--rosa-fu);border-radius:50px;
+    font-weight:700;font-size:16px;padding:2px 10px;line-height:1.25}
 
-  /* ===== MENÚ INFERIOR (madera) ===== */
-  nav{
-    position:fixed;left:0;right:0;bottom:0;z-index:10;max-width:520px;margin:0 auto;
-    display:flex;gap:6px;padding:8px 10px 12px;border-radius:22px 22px 0 0;
+  nav{position:fixed;left:0;right:0;bottom:0;z-index:10;max-width:520px;margin:0 auto;
+    display:flex;gap:5px;padding:8px 8px 12px;border-radius:22px 22px 0 0;
     background:repeating-linear-gradient(8deg,rgba(139,76,20,.2) 0 2px,transparent 2px 9px),linear-gradient(#f6c68f,#e0974f);
-    border:3px solid var(--madera-osc);border-bottom:none;box-shadow:0 -4px 12px rgba(0,0,0,.25)
-  }
-  nav button{
-    flex:1;border:3px solid var(--cafe);border-radius:18px;background:var(--crema);
-    padding:3px 0;font:800 15px 'Baloo 2';color:var(--cafe);line-height:1.05
-  }
-  nav button span{display:block;font-size:24px}
+    border:3px solid var(--madera-osc);border-bottom:none;box-shadow:0 -4px 12px rgba(0,0,0,.25)}
+  nav button{flex:1;border:3px solid var(--cafe);border-radius:16px;background:var(--crema);
+    padding:3px 0;font:800 13px 'Baloo 2';color:var(--cafe);line-height:1.05}
+  nav button span{display:block;font-size:22px}
   nav button.on{background:var(--rosa);box-shadow:0 3px 0 var(--cafe)}
 </style>
 </head>
 <body>
 <div class="hoja">
 
-  <!-- decoración -->
   <span class="deco h" style="top:215px;left:6px">♥</span>
   <span class="deco h" style="top:300px;right:8px">♥</span>
   <span class="deco s" style="top:170px;right:30px">✦</span>
   <span class="deco s" style="top:420px;left:4px">✦</span>
-  <span class="deco h" style="top:640px;right:10px">♥</span>
-  <span class="deco s" style="top:760px;left:8px">✦</span>
 
-  <!-- ENCABEZADO -->
   <header class="encab">
     <div class="mascota izq">🐭</div>
     <div class="mascota der">👨‍🍳</div>
@@ -223,7 +183,7 @@
 
   <!-- ===== RESUMEN ===== -->
   <section class="vista on" id="v-resumen">
-    <div class="caja sinrot">
+    <div class="caja">
       <h2>✨ Mis cuentas ✨</h2>
       <div class="grid">
         <div class="stat gasto"><small>🛒 Gastado</small><b id="sGasto">$0</b></div>
@@ -243,7 +203,7 @@
       <div class="aderezo">Incluye bolsitas de<br>aderezo de chipotle</div>
     </div>
 
-    <div class="caja sinrot">
+    <div class="caja">
       <h2>⚙️ Ajustes</h2>
       <label>Precio de venta del burrito ($)</label>
       <div class="precio-box"><span>$</span><input type="number" id="precioVenta" inputmode="decimal" min="0" step="0.5"></div>
@@ -256,7 +216,7 @@
 
   <!-- ===== COMPRAS ===== -->
   <section class="vista" id="v-compras">
-    <div class="caja sinrot">
+    <div class="caja">
       <h2>🛒 Registrar compra</h2>
       <label>Ingrediente</label>
       <select id="cIng"></select>
@@ -266,12 +226,17 @@
       </div>
       <label>Precio ($)</label>
       <div class="precio-box"><span>$</span><input type="number" id="cPrecio" inputmode="decimal" min="0" step="any" placeholder="0"></div>
+      <div id="cRindeBox">
+        <label>¿Para cuántos burritos alcanza?</label>
+        <input type="number" id="cRinde" inputmode="numeric" min="0" step="1" placeholder="Ej. 20">
+      </div>
+      <div class="total-prev" id="cPrev" style="display:none"></div>
       <label>Fecha</label>
       <input type="date" id="cFecha">
       <button class="btn" id="btnCompra">➕ Guardar compra</button>
     </div>
 
-    <div class="caja sinrot">
+    <div class="caja">
       <h2>Compras del periodo</h2>
       <div id="listaCompras"></div>
     </div>
@@ -279,7 +244,7 @@
 
   <!-- ===== VENTAS ===== -->
   <section class="vista" id="v-ventas">
-    <div class="caja sinrot">
+    <div class="caja">
       <h2>🌯 Registrar venta</h2>
       <label>Burritos vendidos</label>
       <input type="number" id="vCant" inputmode="numeric" min="1" step="1" value="1">
@@ -293,13 +258,43 @@
       <button class="btn verde" id="btnVenta">💰 Guardar venta</button>
     </div>
 
-    <div class="caja sinrot">
+    <div class="caja">
       <h2>Ventas del periodo</h2>
       <div id="listaVentas"></div>
     </div>
   </section>
 
-  <!-- ===== ¡ORDENA YA! ===== -->
+  <!-- ===== INVENTARIO ===== -->
+  <section class="vista" id="v-inventario">
+    <div class="caja">
+      <h2>📦 ¿Cuántos burritos me alcanzan?</h2>
+      <div class="gran" id="invGran"></div>
+    </div>
+
+    <div class="caja">
+      <h2>Lo que me queda</h2>
+      <div class="sub">Se calcula con lo que compras y lo que vendes. Si no coincide, toca ✏️ Ajustar y pon cuántos te alcanzan en realidad.</div>
+      <div id="invLista"></div>
+    </div>
+
+    <div class="caja porcomprar">
+      <h2>🛍️ Por comprar</h2>
+      <label>Avisarme cuando alcance para menos de (burritos)</label>
+      <input type="number" id="umbral" inputmode="numeric" min="0" step="1">
+      <div style="margin-top:10px" id="invComprar"></div>
+    </div>
+
+    <div class="caja">
+      <h2>💡 Costo por burrito</h2>
+      <div class="costo-total">
+        <div class="stat gasto"><small>Me cuesta</small><b id="cbCosto">—</b></div>
+        <div class="stat gan"><small>Gano por burrito</small><b id="cbGana">—</b></div>
+      </div>
+      <div class="nota" id="cbNota"></div>
+      <div id="cbLista" style="margin-top:8px"></div>
+    </div>
+  </section>
+
   <div class="madera ordena">
     <div class="tit">¡Ordena ya!</div>
     <div class="tel"><span class="wa">💬</span> 833 255 5301</div>
@@ -313,35 +308,37 @@
   <button data-v="resumen" class="on"><span>📊</span>Resumen</button>
   <button data-v="compras"><span>🛒</span>Compras</button>
   <button data-v="ventas"><span>🌯</span>Ventas</button>
+  <button data-v="inventario"><span>📦</span>Inventario</button>
 </nav>
 
 <script>
 (function(){
   const KEY = 'burritos_control_v1';
   const INGS = [
-    {n:'Bisteck',          i:'🥩'},
-    {n:'Queso Asadero',    i:'🧀'},
-    {n:'Aguacate',         i:'🥑'},
-    {n:'Frijoles Bayos',   i:'🫘'},
+    {n:'Bisteck',             i:'🥩'},
+    {n:'Queso Asadero',       i:'🧀'},
+    {n:'Aguacate',            i:'🥑'},
+    {n:'Frijoles Bayos',      i:'🫘'},
     {n:'Tortillas de Harina', i:'🫓'},
     {n:'Aderezo de chipotle', i:'🌶️'},
-    {n:'Otro',             i:'🧾'}
+    {n:'Otro',                i:'🧾'}
   ];
+  const BASE = INGS.filter(x => x.n !== 'Otro').map(x => x.n);
   const $ = id => document.getElementById(id);
   const money = n => '$' + (Math.round(n*100)/100).toLocaleString('es-MX',{minimumFractionDigits:0,maximumFractionDigits:2});
   const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const hoy = () => new Date().toLocaleDateString('en-CA');
   const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2,6);
-  // compatibilidad con registros anteriores que tenían cantidad
   const totalC = c => c.precio * (c.cant || 1);
-  // compatibilidad con nombres viejos
   const norm = n => n === 'Bisteck (carne)' ? 'Bisteck' : (n === 'Aderezo de chipotle (bolsitas)' ? 'Aderezo de chipotle' : n);
 
-  let S = { compras:[], ventas:[], precio:35 };
+  let S = { compras:[], ventas:[], ajustes:[], precio:35, umbral:10 };
   let periodo = 'hoy';
 
   function cargar(){
     try{ const d = JSON.parse(localStorage.getItem(KEY)); if(d) S = Object.assign(S,d); }catch(e){}
+    S.compras = S.compras || []; S.ventas = S.ventas || []; S.ajustes = S.ajustes || [];
+    if(typeof S.umbral !== 'number') S.umbral = 10;
     S.compras.forEach(c => c.ing = norm(c.ing));
   }
   function guardar(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
@@ -359,6 +356,24 @@
   const fechaBonita = f => new Date(f + 'T00:00:00').toLocaleDateString('es-MX',{weekday:'short',day:'numeric',month:'short'});
   const ordenar = (a,b) => a.fecha < b.fecha ? 1 : (a.fecha > b.fecha ? -1 : 0);
 
+  /* ---------- INVENTARIO (cálculos) ---------- */
+  function vendidosTotal(){ return S.ventas.reduce((a,v) => a + v.cant, 0); }
+  function stockDe(n){
+    const comp = S.compras.filter(c => c.ing === n).reduce((a,c) => a + (c.rinde || 0), 0);
+    const aj   = S.ajustes.filter(a => a.ing === n).reduce((a,x) => a + x.cant, 0);
+    return comp + aj - vendidosTotal();
+  }
+  const registrado = n => S.compras.some(c => c.ing === n && c.rinde > 0) || S.ajustes.some(a => a.ing === n);
+  function costoPorBurrito(n){
+    const h = S.compras.filter(c => c.ing === n && c.rinde > 0).sort(ordenar);
+    return h.length ? totalC(h[0]) / h[0].rinde : null;
+  }
+  function estado(n, s){
+    if(s <= S.umbral) return ['mal', s <= 0 ? '¡Se acabó!' : '¡Por acabarse!'];
+    if(s <= S.umbral * 2) return ['medio', 'Ya va bajando'];
+    return ['bien', 'Todo bien'];
+  }
+
   function render(){
     $('hdrPrecio').textContent = S.precio;
     $('vPrecioTxt').textContent = money(S.precio);
@@ -374,13 +389,15 @@
     $('sIng').textContent   = money(ing);
     $('sVend').textContent  = vend;
     const g = $('sGan'); g.textContent = money(gan); g.className = gan >= 0 ? 'pos' : 'neg';
-    $('sNota').textContent = vend > 0
-      ? 'Cada burrito te cuesta aprox. ' + money(gasto/vend) + ' (con lo gastado en este periodo).'
-      : (gasto > 0 ? 'Aún no hay ventas en este periodo.' : 'Aún no hay movimientos en este periodo.');
+    let nota = '';
+    if(gasto > 0 || vend > 0){
+      if(gan < 0 && S.precio > 0) nota = 'Te faltan ' + Math.ceil(-gan / S.precio) + ' burritos por vender para recuperar lo gastado.';
+      else if(gasto > 0) nota = '¡Ya recuperaste lo gastado! 🎉';
+    } else nota = 'Aún no hay movimientos en este periodo.';
+    $('sNota').textContent = nota;
 
-    // ingredientes (estilo "Llevan:")
-    const porIng = {};
-    INGS.forEach(x => { if(x.n !== 'Otro') porIng[x.n] = 0; });
+    // resumen: ingredientes
+    const porIng = {}; BASE.forEach(n => porIng[n] = 0);
     compras.forEach(c => { porIng[c.ing] = (porIng[c.ing] || 0) + totalC(c); });
     $('desglose').innerHTML = Object.keys(porIng).map(nombre => {
       const hist = S.compras.filter(c => c.ing === nombre).sort(ordenar);
@@ -389,9 +406,10 @@
         extra = 'Última compra: ' + money(totalC(hist[0]));
         if(hist.length > 1){
           const mejor = hist.reduce((m,c) => totalC(c) < totalC(m) ? c : m, hist[0]);
-          extra += '<br><span class="mejor">Más barata: ' + money(totalC(mejor)) + '</span>';
+          extra += ' · <span class="mejor">Más barata: ' + money(totalC(mejor)) + '</span>';
         }
       }
+      if(BASE.includes(nombre) && registrado(nombre)) extra += '<br>📦 Alcanza para <b>' + Math.max(0, stockDe(nombre)) + '</b> burritos';
       return '<div class="ing-row"><span class="corazon">♥</span><div class="nombre">' + iconoDe(nombre) + ' ' + esc(nombre) +
              '<small>' + extra + '</small></div><div class="monto">' + money(porIng[nombre]) + '</div></div>';
     }).join('');
@@ -400,7 +418,7 @@
     const lc = compras.slice().sort(ordenar);
     $('listaCompras').innerHTML = lc.length ? lc.map(c =>
       '<div class="item"><div class="ico">' + iconoDe(c.ing) + '</div><div class="info"><b>' + esc(c.ing) + '</b><small>' +
-      fechaBonita(c.fecha) + '</small></div><div class="monto menos">-' + money(totalC(c)) +
+      fechaBonita(c.fecha) + (c.rinde ? ' · para ' + c.rinde + ' burritos' : '') + '</small></div><div class="monto menos">-' + money(totalC(c)) +
       '</div><button class="del" data-del="c:' + c.id + '">🗑️</button></div>'
     ).join('') : '<div class="vacio">Sin compras en este periodo</div>';
 
@@ -411,30 +429,105 @@
       money(v.precio) + ' c/u · ' + fechaBonita(v.fecha) + '</small></div><div class="monto mas">+' + money(v.cant*v.precio) +
       '</div><button class="del" data-del="v:' + v.id + '">🗑️</button></div>'
     ).join('') : '<div class="vacio">Sin ventas en este periodo</div>';
+
+    renderInventario();
   }
 
-  function totalVenta(){
-    $('vTotal').textContent = money((parseInt($('vCant').value)||0) * S.precio);
+  function renderInventario(){
+    const reg = BASE.filter(registrado);
+    const stocks = {}; BASE.forEach(n => stocks[n] = stockDe(n));
+
+    // grande
+    if(!reg.length){
+      $('invGran').innerHTML = '<div class="txt">Registra una compra diciendo para cuántos burritos alcanza y aquí verás cuántos puedes hacer.</div>';
+    } else {
+      const minVal = Math.min.apply(null, reg.map(n => stocks[n]));
+      const limita = reg.filter(n => stocks[n] === minVal);
+      $('invGran').innerHTML =
+        '<div class="num">' + Math.max(0, minVal) + '</div>' +
+        '<div class="txt">burritos puedes hacer con lo que tienes</div>' +
+        '<div class="limita">' + (minVal <= 0 ? '⚠️ Te falta: ' : 'Lo que más te limita: ') + limita.map(n => iconoDe(n) + ' ' + esc(n)).join(', ') + '</div>';
+    }
+
+    // por ingrediente
+    const maxS = Math.max(10, S.umbral * 3, Math.max.apply(null, BASE.map(n => stocks[n])));
+    $('invLista').innerHTML = BASE.map(n => {
+      const ok = registrado(n), s = stocks[n];
+      if(!ok){
+        return '<div class="inv"><div class="top"><div class="ico">' + iconoDe(n) + '</div><div class="nm">' + esc(n) +
+          '<small class="st-na">Sin registrar</small></div><button class="aj" data-aj="' + esc(n) + '">✏️ Pon cuántos</button></div></div>';
+      }
+      const [cls, txt] = estado(n, s);
+      const color = cls === 'bien' ? 'var(--verde)' : (cls === 'medio' ? 'var(--ambar)' : 'var(--rojo)');
+      const pct = Math.max(0, Math.min(100, s / maxS * 100));
+      return '<div class="inv"><div class="top"><div class="ico">' + iconoDe(n) + '</div>' +
+        '<div class="nm">' + esc(n) + '<small class="estado st-' + cls + '">' + txt + '</small></div>' +
+        '<div class="cuantos">' + Math.max(0, s) + '<small>burritos</small></div></div>' +
+        '<div class="barra"><i style="width:' + pct + '%;background:' + color + '"></i></div>' +
+        '<div style="text-align:right"><button class="aj" data-aj="' + esc(n) + '">✏️ Ajustar</button></div></div>';
+    }).join('');
+
+    // por comprar
+    $('umbral').value = S.umbral;
+    const falta = BASE.filter(n => registrado(n) && stocks[n] <= S.umbral);
+    const sinReg = BASE.filter(n => !registrado(n));
+    let html = falta.map(n =>
+      '<div class="item"><div class="ico">' + iconoDe(n) + '</div><div class="info"><b>' + esc(n) + '</b><small>Te alcanza para ' + Math.max(0, stocks[n]) +
+      ' burritos</small></div><div class="monto menos">🛒</div></div>').join('');
+    if(!html) html = '<div class="vacio">' + (reg.length ? '¡Todo bien! Nada por comprar 🎉' : 'Registra tus compras para ver aquí qué te falta.') + '</div>';
+    if(sinReg.length && reg.length) html += '<div class="nota">Sin registrar: ' + sinReg.map(esc).join(', ') + '</div>';
+    $('invComprar').innerHTML = html;
+
+    // costo por burrito
+    const costos = BASE.map(n => [n, costoPorBurrito(n)]).filter(x => x[1] !== null);
+    if(costos.length){
+      const tot = costos.reduce((a,x) => a + x[1], 0);
+      $('cbCosto').textContent = money(tot);
+      $('cbGana').textContent = money(S.precio - tot);
+      $('cbGana').style.color = (S.precio - tot) >= 0 ? 'var(--verde)' : 'var(--rojo)';
+      $('cbNota').textContent = costos.length < BASE.length ? 'Aún no cuentan: ' + BASE.filter(n => costoPorBurrito(n) === null).join(', ') + '.' : 'Con tus últimas compras de cada ingrediente.';
+      $('cbLista').innerHTML = costos.map(x =>
+        '<div class="item"><div class="ico">' + iconoDe(x[0]) + '</div><div class="info"><b>' + esc(x[0]) + '</b></div><div class="monto menos">' + money(x[1]) + '</div></div>').join('');
+    } else {
+      $('cbCosto').textContent = '—'; $('cbGana').textContent = '—'; $('cbGana').style.color = '';
+      $('cbNota').textContent = 'Registra compras con "para cuántos burritos alcanza" y aquí verás cuánto te cuesta cada burrito.';
+      $('cbLista').innerHTML = '';
+    }
   }
 
+  /* ---------- FORMULARIOS ---------- */
+  function previewCompra(){
+    const p = parseFloat($('cPrecio').value), r = parseInt($('cRinde').value);
+    const box = $('cPrev');
+    if(p > 0 && r > 0 && $('cIng').value !== 'Otro'){
+      box.style.display = 'block'; box.textContent = 'Te sale en ' + money(p / r) + ' por burrito';
+    } else box.style.display = 'none';
+  }
   $('cIng').innerHTML = INGS.map(x => '<option value="' + esc(x.n) + '">' + x.i + ' ' + esc(x.n) + '</option>').join('');
   $('cIng').addEventListener('change', () => {
-    $('cOtroBox').style.display = $('cIng').value === 'Otro' ? 'block' : 'none';
+    const otro = $('cIng').value === 'Otro';
+    $('cOtroBox').style.display = otro ? 'block' : 'none';
+    $('cRindeBox').style.display = otro ? 'none' : 'block';
     const hist = S.compras.filter(c => c.ing === $('cIng').value).sort(ordenar);
     $('cPrecio').placeholder = hist.length ? 'Última: ' + totalC(hist[0]) : '0';
+    $('cRinde').placeholder = (hist.length && hist[0].rinde) ? 'Última: ' + hist[0].rinde : 'Ej. 20';
+    previewCompra();
   });
+  ['cPrecio','cRinde'].forEach(id => $(id).addEventListener('input', previewCompra));
 
   $('btnCompra').addEventListener('click', () => {
     let ing = $('cIng').value;
     if(ing === 'Otro'){ ing = $('cOtro').value.trim(); if(!ing){ alert('Escribe qué compraste'); return; } }
     const precio = parseFloat($('cPrecio').value);
     if(isNaN(precio) || precio < 0){ alert('Pon el precio en pesos'); return; }
-    S.compras.push({ id:uid(), ing, precio, fecha:$('cFecha').value || hoy() });
+    const rinde = $('cIng').value === 'Otro' ? 0 : (parseInt($('cRinde').value) || 0);
+    S.compras.push({ id:uid(), ing, precio, rinde, fecha:$('cFecha').value || hoy() });
     guardar();
-    $('cPrecio').value = ''; $('cOtro').value = '';
+    $('cPrecio').value = ''; $('cRinde').value = ''; $('cOtro').value = ''; previewCompra();
     render();
   });
 
+  function totalVenta(){ $('vTotal').textContent = money((parseInt($('vCant').value)||0) * S.precio); }
   $('vCant').addEventListener('input', totalVenta);
   document.querySelectorAll('.rapidos button').forEach(b => b.addEventListener('click', () => {
     $('vCant').value = (parseInt($('vCant').value)||0) + parseInt(b.dataset.n); totalVenta();
@@ -450,8 +543,22 @@
     const p = parseFloat($('precioVenta').value);
     if(p >= 0){ S.precio = p; guardar(); render(); totalVenta(); }
   });
+  $('umbral').addEventListener('input', () => {
+    const u = parseInt($('umbral').value);
+    if(u >= 0){ S.umbral = u; guardar(); renderInventario(); }
+  });
 
   document.addEventListener('click', e => {
+    const a = e.target.closest('[data-aj]');
+    if(a){
+      const n = a.dataset.aj, actual = Math.max(0, stockDe(n));
+      const r = prompt('¿Para cuántos burritos te alcanza ahora de ' + n + '?', actual);
+      if(r === null) return;
+      const v = parseInt(r);
+      if(isNaN(v) || v < 0){ alert('Pon un número'); return; }
+      S.ajustes.push({ id:uid(), ing:n, cant: v - stockDe(n), fecha:hoy() });
+      guardar(); render(); return;
+    }
     const b = e.target.closest('[data-del]'); if(!b) return;
     if(!confirm('¿Borrar este registro?')) return;
     const [t,id] = b.dataset.del.split(':');
@@ -461,7 +568,7 @@
   });
   $('btnBorrar').addEventListener('click', () => {
     if(confirm('¿Seguro que quieres borrar TODOS los datos?') && confirm('Esto no se puede deshacer. ¿Continuar?')){
-      S.compras = []; S.ventas = []; guardar(); render();
+      S.compras = []; S.ventas = []; S.ajustes = []; guardar(); render();
     }
   });
   $('btnExport').addEventListener('click', async () => {
@@ -484,6 +591,7 @@
   cargar();
   $('cFecha').value = hoy(); $('vFecha').value = hoy();
   $('precioVenta').value = S.precio;
+  $('cRinde').placeholder = 'Ej. 20';
   totalVenta(); render();
 })();
 </script>
