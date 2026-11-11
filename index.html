@@ -1,421 +1,424 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <meta name="description" content="Mobile Booths S.A. de C.V. - Soluciones en unidades móviles, venta y renta de casetas en el Sur de Tamaulipas y toda la República Mexicana">
-    <meta name="keywords" content="casetas móviles, venta de casetas, renta de casetas, unidades móviles, Tamaulipas">
-    <title>Mobile Booths | Venta y Renta de Casetas Móviles</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#c0392b">
+<title>Burritos Caseras - Control</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rojo:#c0392b; --rojo-osc:#5a1a14; --rosa:#f7a8c4; --rosa-cl:#ffe1ec;
+    --crema:#fff6e3; --madera:#e8a867; --madera-osc:#b5651d; --verde:#2e9e4f;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{
+    margin:0; font-family:'Baloo 2',system-ui,sans-serif; color:var(--rojo-osc);
+    background:
+      repeating-conic-gradient(#d94a3a 0 25%, #fff 0 50%) 0 0/36px 36px;
+    min-height:100vh; padding:12px 12px 90px;
+  }
+  .wrap{max-width:520px;margin:0 auto}
+  .card{
+    background:var(--crema); border:3px solid var(--rojo-osc); border-radius:22px;
+    padding:14px; margin-bottom:14px; box-shadow:0 4px 0 rgba(90,26,20,.35);
+  }
+  header.card{text-align:center;background:var(--crema);position:relative;padding-top:10px}
+  header .rata{font-size:34px;position:absolute;top:6px;left:12px}
+  header .rata.r{left:auto;right:12px}
+  h1{margin:0;font-family:'Baloo 2';font-weight:800;font-size:30px;line-height:1;color:var(--rojo-osc)}
+  h1 span{display:block;font-family:'Pacifico',cursive;font-weight:400;color:#e86a9a;font-size:30px;
+    -webkit-text-stroke:1px var(--rojo-osc); paint-order:stroke fill}
+  .cinta{
+    display:inline-block;margin-top:8px;background:var(--madera);border:2px solid var(--madera-osc);
+    border-radius:10px;padding:2px 18px;font-weight:700;
+  }
+  .precio-burrito{
+    display:inline-block;margin:8px 0 0 6px;background:var(--rosa-cl);border:3px solid #e86a9a;
+    border-radius:50px;padding:0 14px;font-weight:800;font-size:20px
+  }
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="icon" href="images/1.png" type="image/png">
-    <link rel="apple-touch-icon" href="images/logo-grande.png">
+  /* periodo */
+  .periodos{display:flex;gap:6px;margin-bottom:14px}
+  .periodos button{
+    flex:1;border:3px solid var(--rojo-osc);background:#fff;border-radius:14px;padding:6px 0;
+    font:700 15px 'Baloo 2';color:var(--rojo-osc)
+  }
+  .periodos button.on{background:var(--rosa);}
+
+  /* resumen */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .stat{border:3px solid var(--rojo-osc);border-radius:18px;padding:8px 10px;background:#fff;text-align:center}
+  .stat small{display:block;font-weight:700;opacity:.75}
+  .stat b{font-size:26px;font-weight:800;line-height:1.1}
+  .stat.gasto{background:#ffe3df}
+  .stat.ing{background:#e3f6e8}
+  .stat.vend{background:var(--rosa-cl)}
+  .stat.gan{background:#fff0c9}
+  .stat.gan b.pos{color:var(--verde)} .stat.gan b.neg{color:var(--rojo)}
+  .nota{font-size:14px;margin-top:8px;text-align:center;opacity:.85}
+
+  h2{margin:0 0 8px;font-size:20px;font-weight:800}
+  .pill{display:inline-block;background:var(--rosa);border:2px solid var(--rojo-osc);border-radius:50px;padding:0 14px;font-weight:800}
+
+  /* formularios */
+  label{display:block;font-weight:700;font-size:14px;margin:8px 0 2px}
+  input,select{
+    width:100%;border:3px solid var(--rojo-osc);border-radius:14px;padding:9px 12px;
+    font:600 17px 'Baloo 2';background:#fff;color:var(--rojo-osc);
+  }
+  .fila{display:flex;gap:8px}
+  .fila>div{flex:1}
+  .total-prev{
+    margin:10px 0 4px;text-align:center;font-weight:800;font-size:20px;
+    background:var(--rosa-cl);border:2px dashed #e86a9a;border-radius:14px;padding:4px
+  }
+  .btn{
+    width:100%;margin-top:8px;border:3px solid var(--rojo-osc);border-radius:16px;
+    padding:10px;font:800 19px 'Baloo 2';color:#fff;background:var(--rojo);
+    box-shadow:0 4px 0 var(--rojo-osc)
+  }
+  .btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--rojo-osc)}
+  .btn.verde{background:var(--verde)}
+  .btn.chico{width:auto;padding:4px 14px;font-size:16px;margin:0;box-shadow:0 3px 0 var(--rojo-osc)}
+  .rapidos{display:flex;gap:6px;margin-top:6px}
+  .rapidos button{flex:1;border:3px solid var(--rojo-osc);background:var(--rosa-cl);border-radius:12px;
+    padding:4px 0;font:800 16px 'Baloo 2';color:var(--rojo-osc)}
+
+  /* listas */
+  .item{
+    display:flex;align-items:center;gap:10px;background:#fff;border:2px solid var(--rojo-osc);
+    border-radius:14px;padding:8px 10px;margin-bottom:8px
+  }
+  .item .ico{font-size:26px}
+  .item .info{flex:1;min-width:0}
+  .item .info b{display:block;line-height:1.1}
+  .item .info small{opacity:.75;display:block;line-height:1.15}
+  .item .monto{font-weight:800;font-size:18px;white-space:nowrap}
+  .item .monto.mas{color:var(--verde)} .item .monto.menos{color:var(--rojo)}
+  .del{border:none;background:none;font-size:20px;padding:4px}
+  .vacio{text-align:center;opacity:.7;padding:8px}
+
+  .desglose .item .info small b{display:inline}
+  .mejor{color:var(--verde);font-weight:800}
+
+  /* menu inferior */
+  nav{
+    position:fixed;left:0;right:0;bottom:0;display:flex;gap:6px;padding:8px 10px 12px;
+    background:var(--madera);border-top:4px solid var(--madera-osc);z-index:5
+  }
+  nav button{
+    flex:1;border:3px solid var(--rojo-osc);border-radius:16px;background:var(--crema);
+    padding:4px 0;font:800 14px 'Baloo 2';color:var(--rojo-osc);line-height:1.1
+  }
+  nav button span{display:block;font-size:22px}
+  nav button.on{background:var(--rosa)}
+  .vista{display:none} .vista.on{display:block}
+  .pie{display:flex;gap:8px;margin-top:6px}
+  .pie button{flex:1;border:2px solid var(--rojo-osc);background:#fff;border-radius:12px;padding:6px;font:700 14px 'Baloo 2';color:var(--rojo-osc)}
+</style>
 </head>
 <body>
+<div class="wrap">
 
-<!-- ═══════════════════════════════════════════ -->
-<!-- TICKER PUBLICITARIO                         -->
-<!-- ═══════════════════════════════════════════ -->
-<div class="ticker-wrap">
-    <div class="ticker-track" id="tickerTrack">
-        <span><i class="fas fa-industry"></i> SOMOS FABRICANTES</span>
-        <span><i class="fas fa-truck-fast"></i> ENTREGAS EN TODA LA REPÚBLICA</span>
-        <span><i class="fas fa-tag"></i> VENTA Y RENTA DE CASETAS MÓVILES</span>
-        <span><i class="fas fa-phone"></i> 833 324 4188</span>
-        <span><i class="fas fa-award"></i> +10 AÑOS DE EXPERIENCIA</span>
-        <span><i class="fas fa-star"></i> +500 PROYECTOS COMPLETADOS</span>
-        <span><i class="fas fa-industry"></i> SOMOS FABRICANTES</span>
-        <span><i class="fas fa-truck-fast"></i> ENTREGAS EN TODA LA REPÚBLICA</span>
-        <span><i class="fas fa-tag"></i> VENTA Y RENTA DE CASETAS MÓVILES</span>
-        <span><i class="fas fa-phone"></i> 833 324 4188</span>
-        <span><i class="fas fa-award"></i> +10 AÑOS DE EXPERIENCIA</span>
-        <span><i class="fas fa-star"></i> +500 PROYECTOS COMPLETADOS</span>
+  <header class="card">
+    <div class="rata">🐭</div><div class="rata r">👨‍🍳</div>
+    <h1>Burritos <span>Caseras</span></h1>
+    <div class="cinta">💰 Control de gastos y ganancias</div><br>
+    <span class="precio-burrito">$<span id="hdrPrecio">35</span> c/u</span>
+  </header>
+
+  <div class="periodos" id="periodos">
+    <button data-p="hoy" class="on">Hoy</button>
+    <button data-p="semana">7 días</button>
+    <button data-p="mes">Mes</button>
+    <button data-p="todo">Todo</button>
+  </div>
+
+  <!-- RESUMEN -->
+  <section class="vista on" id="v-resumen">
+    <div class="card">
+      <div class="grid">
+        <div class="stat gasto"><small>🛒 Gastado</small><b id="sGasto">$0</b></div>
+        <div class="stat ing"><small>💵 Ingresos</small><b id="sIng">$0</b></div>
+        <div class="stat vend"><small>🌯 Burritos vendidos</small><b id="sVend">0</b></div>
+        <div class="stat gan"><small>✨ Ganancia</small><b id="sGan" class="pos">$0</b></div>
+      </div>
+      <div class="nota" id="sNota"></div>
     </div>
+
+    <div class="card desglose">
+      <h2><span class="pill">Burritos</span> Llevan:</h2>
+      <div id="desglose"></div>
+      <div class="nota">Muestra lo gastado en cada ingrediente, su último precio y el más barato que has encontrado.</div>
+    </div>
+
+    <div class="card">
+      <h2>⚙️ Ajustes</h2>
+      <label>Precio de venta del burrito ($)</label>
+      <input type="number" id="precioVenta" inputmode="decimal" min="0" step="0.5">
+      <div class="pie">
+        <button id="btnExport">📤 Copiar respaldo</button>
+        <button id="btnBorrar">🗑️ Borrar todo</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPRAS -->
+  <section class="vista" id="v-compras">
+    <div class="card">
+      <h2>🛒 Registrar compra</h2>
+      <label>Ingrediente</label>
+      <select id="cIng"></select>
+      <div id="cOtroBox" style="display:none">
+        <label>¿Qué compraste?</label>
+        <input type="text" id="cOtro" placeholder="Ej. Servilletas, papel aluminio">
+      </div>
+      <div class="fila">
+        <div><label>Cantidad</label><input type="number" id="cCant" inputmode="decimal" min="0" step="any" value="1"></div>
+        <div><label>Unidad</label>
+          <select id="cUni">
+            <option>kg</option><option>pza</option><option>paquete</option><option>bolsa</option>
+            <option>lata</option><option>litro</option><option>caja</option>
+          </select>
+        </div>
+      </div>
+      <div class="fila">
+        <div><label>Precio por unidad ($)</label><input type="number" id="cPrecio" inputmode="decimal" min="0" step="any" placeholder="Ej. 20"></div>
+        <div><label>Fecha</label><input type="date" id="cFecha"></div>
+      </div>
+      <label>Lugar donde compraste (opcional)</label>
+      <input type="text" id="cLugar" placeholder="Ej. Mercado, Walmart, Don Pepe">
+      <div class="total-prev">Total: <span id="cTotal">$0</span></div>
+      <button class="btn" id="btnCompra">➕ Guardar compra</button>
+    </div>
+
+    <div class="card">
+      <h2>Compras del periodo</h2>
+      <div id="listaCompras"></div>
+    </div>
+  </section>
+
+  <!-- VENTAS -->
+  <section class="vista" id="v-ventas">
+    <div class="card">
+      <h2>🌯 Registrar venta</h2>
+      <div class="fila">
+        <div><label>Burritos vendidos</label><input type="number" id="vCant" inputmode="numeric" min="1" step="1" value="1"></div>
+        <div><label>Precio c/u ($)</label><input type="number" id="vPrecio" inputmode="decimal" min="0" step="0.5"></div>
+      </div>
+      <div class="rapidos">
+        <button data-n="1">+1</button><button data-n="2">+2</button>
+        <button data-n="5">+5</button><button data-n="10">+10</button>
+      </div>
+      <label>Fecha</label>
+      <input type="date" id="vFecha">
+      <div class="total-prev">Total: <span id="vTotal">$0</span></div>
+      <button class="btn verde" id="btnVenta">💰 Guardar venta</button>
+    </div>
+
+    <div class="card">
+      <h2>Ventas del periodo</h2>
+      <div id="listaVentas"></div>
+    </div>
+  </section>
+
 </div>
 
-<!-- ═══════════════════════════════════════════ -->
-<!-- NAVBAR                                      -->
-<!-- ═══════════════════════════════════════════ -->
-<header class="navbar" id="mainNavbar">
-    <div class="brand-container">
-        <img src="images/logo.png" alt="Logo Mobile Booths" class="logo-img">
-    </div>
-    <div class="menu-toggle" id="mobile-menu">
-        <span></span><span></span><span></span>
-    </div>
-    <nav class="nav-menu" id="nav-list">
-        <ul>
-            <li><a href="index.html" class="active">Inicio</a></li>
-            <li><a href="catalogo.html">Catálogo</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
-        </ul>
-    </nav>
-</header>
+<nav>
+  <button data-v="resumen" class="on"><span>📊</span>Resumen</button>
+  <button data-v="compras"><span>🛒</span>Compras</button>
+  <button data-v="ventas"><span>🌯</span>Ventas</button>
+</nav>
 
-<!-- ═══════════════════════════════════════════ -->
-<!-- HERO                                        -->
-<!-- ═══════════════════════════════════════════ -->
-<section id="inicio" class="hero">
-    <video autoplay muted loop id="bg-video" playsinline webkit-playsinline>
-        <source src="images/caseta1.mp4" type="video/mp4">
-    </video>
-    <div class="hero-overlay"></div>
+<script>
+(function(){
+  const KEY = 'burritos_control_v1';
+  const INGS = [
+    {n:'Bisteck (carne)',   i:'🥩'},
+    {n:'Queso Asadero',     i:'🧀'},
+    {n:'Aguacate',          i:'🥑'},
+    {n:'Frijoles Bayos',    i:'🫘'},
+    {n:'Tortillas de Harina', i:'🫓'},
+    {n:'Aderezo de chipotle (bolsitas)', i:'🌶️'},
+    {n:'Otro',              i:'🧾'}
+  ];
+  const $ = id => document.getElementById(id);
+  const money = n => '$' + (Math.round(n*100)/100).toLocaleString('es-MX',{minimumFractionDigits:0,maximumFractionDigits:2});
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const hoy = () => new Date().toLocaleDateString('en-CA');
+  const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2,6);
 
-    <div class="corner-badge">
-        <i class="fas fa-trophy"></i> Líderes en elk
-    </div>
+  let S = { compras:[], ventas:[], precio:35 };
+  let periodo = 'hoy';
 
-    <div class="hero-container">
-        <div class="hero-content" data-aos="fade-up">
-            <h1>Soluciones en <span>Unidades Móviles</span></h1>
-            <p>Diseño, innovación y resistencia para espacios modulares funcionales para toda la República Mexicana.</p>
+  function cargar(){
+    try{ const d = JSON.parse(localStorage.getItem(KEY)); if(d) S = Object.assign(S,d); }catch(e){}
+  }
+  function guardar(){
+    try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){}
+  }
+  const iconoDe = nombre => (INGS.find(x => x.n === nombre) || {i:'🧾'}).i;
 
-            <div class="services-cards">
-                <div class="service-card" data-service="venta">
-                    <i class="fas fa-tag"></i>
-                    <h3>VENTA</h3>
-                    <p>Casetas modernas al mejor precio.</p>
-                    <button class="service-btn" onclick="window.location.href='catalogo.html'">Ver más →</button>
-                </div>
-                <div class="service-card" data-service="renta">
-                    <i class="fas fa-calendar-check"></i>
-                    <h3>RENTA</h3>
-                    <p>Casetas para proyectos temporales.</p>
-                    <button class="service-btn" onclick="window.location.href='catalogo.html'">Ver más →</button>
-                </div>
-                <div class="service-card" data-service="personalizacion">
-                    <i class="fas fa-ruler-combined"></i>
-                    <h3>PERSONALIZACIÓN</h3>
-                    <p>Diseños adaptados a tus necesidades.</p>
-                    <button class="service-btn" onclick="window.location.href='catalogo.html?section=personalizar&openPersonalization=true'">Ver más →</button>
-                </div>
-            </div>
+  function enRango(fecha){
+    if(periodo === 'todo') return true;
+    const d = new Date(fecha + 'T00:00:00');
+    const h = new Date(hoy() + 'T00:00:00');
+    const dias = Math.round((h - d) / 86400000);
+    if(periodo === 'hoy') return dias === 0;
+    if(periodo === 'semana') return dias >= 0 && dias < 7;
+    if(periodo === 'mes') return d.getFullYear() === h.getFullYear() && d.getMonth() === h.getMonth();
+    return true;
+  }
+  const fechaBonita = f => new Date(f + 'T00:00:00').toLocaleDateString('es-MX',{weekday:'short',day:'numeric',month:'short'});
 
-            <div class="hero-buttons">
-                <a href="#quienes-somos" class="btn-primary">
-                    <i class="fas fa-arrow-down"></i> Conócenos
-                </a>
-                <a href="catalogo.html" class="btn-outline">
-                    <i class="fas fa-search"></i> Ver Catálogo
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
+  /* ---------- RENDER ---------- */
+  function render(){
+    $('hdrPrecio').textContent = S.precio;
+    const compras = S.compras.filter(c => enRango(c.fecha));
+    const ventas  = S.ventas.filter(v => enRango(v.fecha));
 
-<!-- ═══════════════════════════════════════════ -->
-<!-- STATS                                       -->
-<!-- ═══════════════════════════════════════════ -->
-<div class="stats-section">
-    <div class="stats-container">
-        <div class="stat-item" data-aos="zoom-in">
-            <i class="fas fa-building"></i>
-            <div class="stat-number">+500</div>
-            <div class="stat-label">Proyectos Completados</div>
-        </div>
-        <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
-            <i class="fas fa-smile"></i>
-            <div class="stat-number">+300</div>
-            <div class="stat-label">Clientes Satisfechos</div>
-        </div>
-        <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
-            <i class="fas fa-truck-fast"></i>
-            <div class="stat-number">+200</div>
-            <div class="stat-label">Entregas Realizadas</div>
-        </div>
-        <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
-            <i class="fas fa-award"></i>
-            <div class="stat-number">100%</div>
-            <div class="stat-label">Calidad Certificada</div>
-        </div>
-    </div>
-</div>
+    const gasto = compras.reduce((a,c) => a + c.cant*c.precio, 0);
+    const vend  = ventas.reduce((a,v) => a + v.cant, 0);
+    const ing   = ventas.reduce((a,v) => a + v.cant*v.precio, 0);
+    const gan   = ing - gasto;
 
-<!-- ═══════════════════════════════════════════ -->
-<!-- ABOUT                                       -->
-<!-- ═══════════════════════════════════════════ -->
-<section id="quienes-somos" class="about-section">
-    <div class="about-container">
-        <div class="section-header" data-aos="fade-up">
-            <span class="section-eyebrow"><i class="fas fa-medal"></i> Nuestra Trayectoria</span>
-            <h2>Especialistas en Casetas y <span>Unidades Móviles</span></h2>
-            <div class="section-rule"></div>
-        </div>
-        <div class="about-grid">
-            <div class="about-text" data-aos="fade-right">
-                <p>En <strong>Mobile Booths S.A. De C.V.</strong>, nos dedicamos a transformar espacios modulares en soluciones funcionales. Con años de experiencia en el mercado mexicano, garantizamos calidad que supera las normativas más estrictas. Nuestro compromiso es ofrecer productos duraderos, seguros y diseñados para satisfacer las necesidades específicas de cada cliente, ya sea en el sector industrial, comercial o de eventos.</p>
-                <ul class="features-list">
-                    <li><i class="fas fa-check-circle"></i> Entregas rápidas y seguras en toda la República Mexicana.</li>
-                    <li><i class="fas fa-check-circle"></i> Materiales de alta resistencia térmica certificados.</li>
-                    <li><i class="fas fa-check-circle"></i> Diseños personalizados según las necesidades de tu proyecto.</li>
-                    <li><i class="fas fa-check-circle"></i> Opciones de renta y venta adaptables a tu presupuesto.</li>
-                </ul>
-            </div>
-            <div class="about-image" data-aos="fade-left">
-                <img src="images/fondo.jpeg" alt="Instalaciones Mobile Booths">
-                <div class="experience-badge">
-                    <span class="years">+10</span>
-                    <span class="exp-text">Años de Experiencia</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+    $('sGasto').textContent = money(gasto);
+    $('sIng').textContent   = money(ing);
+    $('sVend').textContent  = vend;
+    const g = $('sGan'); g.textContent = money(gan); g.className = gan >= 0 ? 'pos' : 'neg';
+    $('sNota').textContent = vend > 0
+      ? 'Te cuesta aprox. ' + money(gasto/vend) + ' hacer cada burrito (según lo gastado en este periodo).'
+      : (gasto > 0 ? 'Aún no hay ventas en este periodo.' : 'Aún no hay movimientos en este periodo.');
 
-<!-- ═══════════════════════════════════════════ -->
-<!-- BANNER — SECTORES DE APLICACIÓN (con imágenes de fondo) -->
-<!-- ═══════════════════════════════════════════ -->
-<section class="sectors-section">
-    <div class="sectors-container">
-        <div class="section-header" data-aos="fade-up">
-            <span class="section-eyebrow"><i class="fas fa-map-marked-alt"></i> Dónde Operamos</span>
-            <h2>Soluciones para <span>Cada Sector</span></h2>
-            <div class="section-rule"></div>
-            <p>Nuestras casetas móviles se adaptan a cualquier industria, condición climática y necesidad operativa del país.</p>
-        </div>
-        <div class="sectors-grid" data-aos="fade-up" data-aos-delay="100">
-            <div class="sector-card">
-                <div class="sector-bg-img" ><img src="images/indu.jpeg" alt=""></div>
-                <div class="sector-overlay"></div>
-                <div class="sector-content">
-                    <div class="sector-icon"><i class="fas fa-industry"></i></div>
-                    <h3>Plantas Industriales</h3>
-                    <p>Oficinas de campo, casetas de vigilancia y módulos de control para plantas manufactureras y refinerías.</p>
-                </div>
-                <div class="sector-tag">INDUSTRIAL</div>
-            </div>
-            <div class="sector-card">
-                <div class="sector-bg-img" ><img src="images/construccion.png" alt=""></div>
-                <div class="sector-overlay"></div>
-                <div class="sector-content">
-                    <div class="sector-icon"><i class="fas fa-hard-hat"></i></div>
-                    <h3>Construcción & Obras</h3>
-                    <p>Oficinas temporales, sanitarios y vestuarios para obras de infraestructura y proyectos de construcción.</p>
-                </div>
-                <div class="sector-tag">CONSTRUCCIÓN</div>
-            </div>
-            <div class="sector-card">
-                <div class="sector-bg-img" ><img src="images/fracc.png" alt=""></div>
-                <div class="sector-overlay"></div>
-                <div class="sector-content">
-                    <div class="sector-icon"><i class="fas fa-home"></i></div>
-                    <h3>Fraccionamientos</h3>
-                    <p>Casetas de acceso controlado, módulos de seguridad y oficinas de ventas para desarrollos habitacionales.</p>
-                </div>
-                <div class="sector-tag">RESIDENCIAL</div>
-            </div>
-            <div class="sector-card">
-                <div class="sector-bg-img" ><img src="images/festival.jpeg" alt=""></div>
-                <div class="sector-overlay"></div>
-                <div class="sector-content">
-                    <div class="sector-icon"><i class="fas fa-calendar-alt"></i></div>
-                    <h3>Eventos & Festivales</h3>
-                    <p>Sanitarios móviles, módulos de atención y taquillas para eventos masivos, festivales y conciertos.</p>
-                </div>
-                <div class="sector-tag">EVENTOS</div>
-            </div>
-            <div class="sector-card">
-                <div class="sector-bg-img" ><img src="images/petroleo.png" alt=""></div>
-                <div class="sector-overlay"></div>
-                <div class="sector-content">
-                    <div class="sector-icon"><i class="fas fa-oil-can"></i></div>
-                    <h3>Sector Petrolero</h3>
-                    <p>Módulos habitacionales, oficinas y comedores para campamentos en zonas de extracción y refinación.</p>
-                </div>
-                <div class="sector-tag">PETROLERO</div>
-            </div>
-            <div class="sector-card">
-                <div class="sector-bg-img" ><img src="images/seguridad.png" alt=""></div>
-                <div class="sector-overlay"></div>
-                <div class="sector-content">
-                    <div class="sector-icon"><i class="fas fa-shield-alt"></i></div>
-                    <h3>Seguridad & Vigilancia</h3>
-                    <p>Casetas de control, garitas y módulos de supervisión para empresas, hospitales y corporativos.</p>
-                </div>
-                <div class="sector-tag">SEGURIDAD</div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- ═══════════════════════════════════════════ -->
-<!-- PROCESO                                     -->
-<!-- ═══════════════════════════════════════════ -->
-<section class="process-section">
-    <div class="process-container">
-        <div class="section-header light" data-aos="fade-up">
-            <span class="section-eyebrow"><i class="fas fa-cogs"></i> Metodología</span>
-            <h2>¿Cómo <span>Trabajamos?</span></h2>
-            <div class="section-rule"></div>
-            <p>Un proceso ágil y transparente en 5 pasos</p>
-        </div>
-        <div class="process-timeline">
-            <div class="process-step" data-aos="fade-up" data-aos-delay="0">
-                <div class="step-num">1</div>
-                <div class="step-body">
-                    <h3>Contacto Inicial</h3>
-                    <p>Nos contactas vía WhatsApp, formulario o llamada. Cuéntanos tu necesidad y te escuchamos atentamente.</p>
-                </div>
-            </div>
-            <div class="process-step" data-aos="fade-up" data-aos-delay="80">
-                <div class="step-num">2</div>
-                <div class="step-body">
-                    <h3>Asesoría y Diagnóstico</h3>
-                    <p>Te asesoramos para encontrar la mejor solución según tu presupuesto, plazo y requerimientos específicos.</p>
-                </div>
-            </div>
-            <div class="process-step" data-aos="fade-up" data-aos-delay="160">
-                <div class="step-num">3</div>
-                <div class="step-body">
-                    <h3>Diseño y Cotización</h3>
-                    <p>Recibes planos 3D de tu proyecto y una cotización detallada sin ningún costo.</p>
-                </div>
-            </div>
-            <div class="process-step" data-aos="fade-up" data-aos-delay="240">
-                <div class="step-num">4</div>
-                <div class="step-body">
-                    <h3>Fabricación</h3>
-                    <p>Construimos tu unidad con materiales de primera calidad en un tiempo récord de 15 a 30 días.</p>
-                </div>
-            </div>
-            <div class="process-step" data-aos="fade-up" data-aos-delay="320">
-                <div class="step-num">5</div>
-                <div class="step-body">
-                    <h3>Instalación y Entrega</h3>
-                    <p>Llevamos e instalamos tu caseta donde la necesites, con garantía incluida y soporte post-venta.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+    // desglose por ingrediente (gasto del periodo + último y mejor precio histórico)
+    const porIng = {};
+    INGS.forEach(x => { if(x.n !== 'Otro') porIng[x.n] = {tot:0}; });
+    compras.forEach(c => { (porIng[c.ing] = porIng[c.ing] || {tot:0}).tot += c.cant*c.precio; });
+    const html = Object.keys(porIng).map(nombre => {
+      const hist = S.compras.filter(c => c.ing === nombre).sort((a,b) => a.fecha < b.fecha ? 1 : -1);
+      let extra = 'Sin compras registradas';
+      if(hist.length){
+        const ult = hist[0];
+        const mejor = hist.reduce((m,c) => c.precio < m.precio ? c : m, hist[0]);
+        extra = 'Último: <b>' + money(ult.precio) + '/' + esc(ult.uni) + '</b>' + (ult.lugar ? ' en ' + esc(ult.lugar) : '');
+        if(hist.length > 1) extra += '<br><span class="mejor">Más barato: ' + money(mejor.precio) + '/' + esc(mejor.uni) + (mejor.lugar ? ' en ' + esc(mejor.lugar) : '') + '</span>';
+      }
+      return '<div class="item"><div class="ico">' + iconoDe(nombre) + '</div><div class="info"><b>' + esc(nombre) +
+             '</b><small>' + extra + '</small></div><div class="monto menos">' + money(porIng[nombre].tot) + '</div></div>';
+    }).join('');
+    $('desglose').innerHTML = html;
 
-<!-- ═══════════════════════════════════════════ -->
-<!-- LOGÍSTICA                                   -->
-<!-- ═══════════════════════════════════════════ -->
-<section class="logistics-section">
-    <div class="logistics-container">
-        <div class="section-header" data-aos="fade-up">
-            <span class="section-eyebrow"><i class="fas fa-truck"></i> Logística y Entregas</span>
-            <h2>Entregas Rápidas y <span>Seguras</span></h2>
-            <div class="section-rule"></div>
-            <p>Llevamos tu proyecto a donde lo necesites</p>
-        </div>
-        <div class="logistics-grid">
-            <div class="logistics-container"></div>
-            <div class="section-header" data-aos="fade-up"></div>
-            <div class="logistics-card-blue" data-aos="fade-right">
-                <i class="fas fa-truck-ramp-box"></i>
-                <h3>Flota Propia</h3>
-                <p>Contamos con vehículos especializados para la entrega de tus unidades móviles, garantizando puntualidad y cuidado en el traslado.</p>
-                <div class="logistics-tags">
-                    <span><i class="fas fa-check-circle"></i> Seguro de transporte</span>
-                    <span><i class="fas fa-check-circle"></i> Instalación incluida</span>
-                    <span><i class="fas fa-check-circle"></i> Rastreo de envío</span>
-                    <span><i class="fas fa-check-circle"></i> República Mexicana</span>
-                </div>
-            </div>
-            <div class="logistics-deliveries" data-aos="fade-left">
-                <h3><i class="fas fa-clipboard-list"></i> Entregas Destacadas</h3>
-                <div class="delivery-list">
-                    <div class="delivery-item">
-                        <i class="fas fa-building"></i>
-                        <div>
-                            <strong>Planta Industrial — Monterrey, NL</strong>
-                            <p>10 casetas de seguridad entregadas en 2024.</p>
-                        </div>
-                    </div>
-                    <div class="delivery-item">
-                        <i class="fas fa-building"></i>
-                        <div>
-                            <strong>Oficinas Administrativas — CDMX</strong>
-                            <p>5 oficinas móviles personalizadas.</p>
-                        </div>
-                    </div>
-                    <div class="delivery-item">
-                        <i class="fas fa-calendar-alt"></i>
-                        <div>
-                            <strong>Festival Internacional — Guadalajara</strong>
-                            <p>20 sanitarios móviles + casetas de vigilancia.</p>
-                        </div>
-                    </div>
-                    <div class="delivery-item">
-                        <i class="fas fa-home"></i>
-                        <div>
-                            <strong>Fraccionamiento Residencial — Querétaro</strong>
-                            <p>8 casetas de acceso controlado.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+    // lista compras
+    const lc = compras.slice().sort((a,b) => a.fecha < b.fecha ? 1 : (a.fecha > b.fecha ? -1 : 0));
+    $('listaCompras').innerHTML = lc.length ? lc.map(c =>
+      '<div class="item"><div class="ico">' + iconoDe(c.ing) + '</div><div class="info"><b>' + esc(c.ing) + '</b><small>' +
+      c.cant + ' ' + esc(c.uni) + ' × ' + money(c.precio) + (c.lugar ? ' · ' + esc(c.lugar) : '') + ' · ' + fechaBonita(c.fecha) +
+      '</small></div><div class="monto menos">-' + money(c.cant*c.precio) + '</div><button class="del" data-del="c:' + c.id + '">🗑️</button></div>'
+    ).join('') : '<div class="vacio">Sin compras en este periodo</div>';
 
-<!-- ═══════════════════════════════════════════ -->
-<!-- BANNER PROMO PRINCIPAL                      -->
-<!-- ═══════════════════════════════════════════ -->
-<section class="promo-banner" data-aos="fade-up">
-    <div class="promo-banner-inner">
-        <div class="promo-text-panel">
-            <span class="promo-badge"><i class="fas fa-fire"></i> OFERTAS ESPECIALES 2026</span>
-            <h2>¡Descuentos <span>todo el año</span>!</h2>
-            <p>Aprovecha nuestras promociones en venta y renta de casetas móviles. Cotización sin costo, diseño personalizado y entrega garantizada en toda la República.</p>
-            <div class="promo-btns">
-                <a href="catalogo.html" class="btn-primary">
-                    <i class="fas fa-search"></i> Ver Catálogo
-                </a>
-                <a href="contacto.html" class="btn-outline">
-                    <i class="fas fa-envelope"></i> Cotizar Ahora
-                </a>
-            </div>
-        </div>
-        <div class="promo-visual-panel">
-            <img src="images/fondo.jpeg" alt="Casetas Mobile Booths">
-            <div class="promo-visual-overlay"></div>
-            <div class="promo-visual-stat">
-                <span class="big">15-30</span>
-                <small>DÍAS DE FABRICACIÓN</small>
-            </div>
-        </div>
-    </div>
-</section>
+    // lista ventas
+    const lv = ventas.slice().sort((a,b) => a.fecha < b.fecha ? 1 : (a.fecha > b.fecha ? -1 : 0));
+    $('listaVentas').innerHTML = lv.length ? lv.map(v =>
+      '<div class="item"><div class="ico">🌯</div><div class="info"><b>' + v.cant + ' burrito' + (v.cant>1?'s':'') + '</b><small>' +
+      money(v.precio) + ' c/u · ' + fechaBonita(v.fecha) +
+      '</small></div><div class="monto mas">+' + money(v.cant*v.precio) + '</div><button class="del" data-del="v:' + v.id + '">🗑️</button></div>'
+    ).join('') : '<div class="vacio">Sin ventas en este periodo</div>';
+  }
 
-<!-- ═══════════════════════════════════════════ -->
-<!-- WHATSAPP                                    -->
-<!-- ═══════════════════════════════════════════ -->
-<a href="https://wa.me/528333244188" class="wpp-float" target="_blank" rel="noopener">
-    <i class="fab fa-whatsapp"></i>
-    <span>¡Cotiza aquí!</span>
-</a>
+  /* ---------- FORMULARIOS ---------- */
+  function llenarSelect(){
+    $('cIng').innerHTML = INGS.map(x => '<option value="' + esc(x.n) + '">' + x.i + ' ' + esc(x.n) + '</option>').join('');
+  }
+  function totalCompra(){
+    const t = (parseFloat($('cCant').value)||0) * (parseFloat($('cPrecio').value)||0);
+    $('cTotal').textContent = money(t);
+  }
+  function totalVenta(){
+    const t = (parseInt($('vCant').value)||0) * (parseFloat($('vPrecio').value)||0);
+    $('vTotal').textContent = money(t);
+  }
 
-<!-- ═══════════════════════════════════════════ -->
-<!-- FOOTER                                      -->
-<!-- ═══════════════════════════════════════════ -->
-<footer class="main-footer">
-    <div class="footer-container">
-        <div class="footer-logo">
-            <img src="images/logo.png" alt="Logo 360" class="logo-imgg">
-            <p>La calidad nos distingue.</p>
-            <p class="texto-cursivo">SOMOS FABRICANTES</p>
-            <div class="footer-social">
-                <a href="https://www.facebook.com/profile.php?id=100066891784108" class="social-icon" target="_blank" rel="noopener" aria-label="Facebook">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="https://wa.me/528333244188" class="social-icon" target="_blank" rel="noopener" aria-label="WhatsApp">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Mobile Booths S.A. De C.V. Todos los derechos reservados.</p>
-        </div>
-    </div>
-</footer>
+  $('cIng').addEventListener('change', () => {
+    $('cOtroBox').style.display = $('cIng').value === 'Otro' ? 'block' : 'none';
+    // sugerir unidad y último precio
+    const nombre = $('cIng').value;
+    const hist = S.compras.filter(c => c.ing === nombre).sort((a,b) => a.fecha < b.fecha ? 1 : -1);
+    if(hist.length){ $('cUni').value = hist[0].uni; $('cPrecio').placeholder = 'Último: ' + hist[0].precio; }
+    else { $('cPrecio').placeholder = 'Ej. 20'; }
+  });
+  ['cCant','cPrecio'].forEach(id => $(id).addEventListener('input', totalCompra));
+  ['vCant','vPrecio'].forEach(id => $(id).addEventListener('input', totalVenta));
 
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="js/script.js"></script>
+  $('btnCompra').addEventListener('click', () => {
+    let ing = $('cIng').value;
+    if(ing === 'Otro'){ ing = $('cOtro').value.trim(); if(!ing){ alert('Escribe qué compraste'); return; } }
+    const cant = parseFloat($('cCant').value), precio = parseFloat($('cPrecio').value);
+    if(!(cant > 0) || !(precio >= 0) || isNaN(precio)){ alert('Pon cantidad y precio'); return; }
+    S.compras.push({ id:uid(), ing, cant, uni:$('cUni').value, precio, lugar:$('cLugar').value.trim(), fecha:$('cFecha').value || hoy() });
+    guardar();
+    $('cPrecio').value = ''; $('cLugar').value = ''; $('cOtro').value = ''; $('cCant').value = 1; totalCompra();
+    render();
+  });
+
+  document.querySelectorAll('.rapidos button').forEach(b => b.addEventListener('click', () => {
+    $('vCant').value = (parseInt($('vCant').value)||0) + parseInt(b.dataset.n);
+    totalVenta();
+  }));
+
+  $('btnVenta').addEventListener('click', () => {
+    const cant = parseInt($('vCant').value), precio = parseFloat($('vPrecio').value);
+    if(!(cant > 0) || isNaN(precio)){ alert('Pon cantidad y precio'); return; }
+    S.ventas.push({ id:uid(), cant, precio, fecha:$('vFecha').value || hoy() });
+    guardar();
+    $('vCant').value = 1; totalVenta();
+    render();
+  });
+
+  $('precioVenta').addEventListener('input', () => {
+    const p = parseFloat($('precioVenta').value);
+    if(p >= 0){ S.precio = p; $('vPrecio').value = p; guardar(); $('hdrPrecio').textContent = p; totalVenta(); }
+  });
+
+  document.addEventListener('click', e => {
+    const b = e.target.closest('[data-del]'); if(!b) return;
+    if(!confirm('¿Borrar este registro?')) return;
+    const [t,id] = b.dataset.del.split(':');
+    if(t === 'c') S.compras = S.compras.filter(x => x.id !== id);
+    else S.ventas = S.ventas.filter(x => x.id !== id);
+    guardar(); render();
+  });
+
+  $('btnBorrar').addEventListener('click', () => {
+    if(confirm('¿Seguro que quieres borrar TODOS los datos?') && confirm('Esto no se puede deshacer. ¿Continuar?')){
+      S.compras = []; S.ventas = []; guardar(); render();
+    }
+  });
+  $('btnExport').addEventListener('click', async () => {
+    const txt = JSON.stringify(S);
+    try{ await navigator.clipboard.writeText(txt); alert('Respaldo copiado. Pégalo en tus notas o WhatsApp para guardarlo.'); }
+    catch(e){ prompt('Copia este respaldo:', txt); }
+  });
+
+  /* ---------- NAVEGACIÓN ---------- */
+  document.querySelectorAll('nav button').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('nav button').forEach(x => x.classList.toggle('on', x === b));
+    document.querySelectorAll('.vista').forEach(v => v.classList.toggle('on', v.id === 'v-' + b.dataset.v));
+    window.scrollTo(0,0);
+  }));
+  document.querySelectorAll('#periodos button').forEach(b => b.addEventListener('click', () => {
+    periodo = b.dataset.p;
+    document.querySelectorAll('#periodos button').forEach(x => x.classList.toggle('on', x === b));
+    render();
+  }));
+
+  /* ---------- INICIO ---------- */
+  cargar();
+  llenarSelect();
+  $('cFecha').value = hoy(); $('vFecha').value = hoy();
+  $('vPrecio').value = S.precio; $('precioVenta').value = S.precio;
+  totalCompra(); totalVenta(); render();
+})();
+</script>
 </body>
 </html>
